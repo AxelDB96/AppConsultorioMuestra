@@ -1,0 +1,160 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"></h1>
+
+        </div>
+
+
+        <!-- INICIO Formulario para agregar usuarios -->
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="buscarTurno" placeholder="🔍 Buscar por nombre o ubicacion...">
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                    <div class="table-responsive">
+                        <table id="tablaTurnos" class="display table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Fecha</th>
+                                    <th>Ubicacion</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" class="form-control" name="Nombre" readonly></td>
+                                    <td><input type="text" class="form-control" name="Apellido" readonly></td>
+                                    <td><input type="text" class="form-control" name="Fecha" readonly></td>
+                                    <td><input type="text" class="form-control" name="uBbicacion" readonly></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Editar Paciente-->
+        <div class="modal fade" id="modalEditarTurno" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <!-- Cambiar a modal-xl para mayor ancho -->
+                <div class="modal-content" style="height: 80vh;">
+                    <!-- Ajustar la altura -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Ver Turno</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body" style="overflow-y: auto;">
+                        <!-- Agregar scroll interno si es necesario -->
+                        <form id="formEditarTurno">
+                            <input type="hidden" id="turnoId">
+                            <div class="row">
+                                <!-- Usar grid para organizar mejor -->
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="editNombresT" class="form-label">Nombres</label>
+                                        <input type="text" class="form-control" id="editNombresT" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editApellidoT" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="editApellidoT" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editDocumentoT" class="form-label">Documento</label>
+                                        <input type="text" class="form-control" id="editDocumentoT" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="editTelefonoT" class="form-label">Telefono</label>
+                                        <input type="text" class="form-control" id="editTelefonoT" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editDiaHoraT" class="form-label">Fecha y hora</label>
+                                        <input type="text" class="form-control" id="editDiaHoraT" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                    <label for="editUbicacionT" class="form-label">Ubicacion</label>
+                                    <input type="text" class="form-control" id="editUbicacionT" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                            <div class="d-flex justify-content-center mt-3">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutElimT">Eliminar Turno</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logoutFinalizarT">Finalizar Turno</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Modal de eliminar -->
+    <div class="modal fade" id="logoutElimT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¿Desea eliminar el turno agendado?</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="eliminarContacto" class="btn btn-primary" onclick="eliminarTurno()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de desactivar -->
+    <div class="modal fade" id="logoutFinalizarT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">¿Desea dar por finalizado el turno?</h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="finlizarTurnO" class="btn btn-primary" onclick="finalizarTurno()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="~/js/VerTurnos.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            mostrarTurnos();
+            buscarPorNombreOubicacion()
+        });
+    </script>

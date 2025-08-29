@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<html>
+<head>
+    <title> Seguimiento Evaluacion </title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Formulario de Seguimiento Evaluacion</h1>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="nombreE" placeholder="" readonly>
+            </div>
+            <div class="col-md-4">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellidoE" placeholder="" readonly>
+            </div>
+            <div class="col-md-4">
+                <label for="dni" class="form-label">DNI</label>
+                <input type="text" class="form-control" id="dniE" placeholder="" readonly>
+            </div>
+        </div>
+
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"> </h5>
+            </div>
+            <div class="card-body">
+                <textarea class="form-control" id="textoSeguimientoEvaluacion" rows="8" placeholder="" style="resize: none;"></textarea>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-success" onclick="actualizarSeguimientoEvaluacion()">Guardar</button>
+        </div>
+    </div>
+
+
+
+    <script src="~/js/Pacientes.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            llenarSeguimientoEvaluacion();
+        });
+    </script>
+</body>
+</html>
+
+

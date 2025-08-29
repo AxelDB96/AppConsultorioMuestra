@@ -1,0 +1,124 @@
+﻿@{
+    Layout = "_Layout";
+
+    ViewData["Title"] = "Calendario de Turnos";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">Agenda de Turnos</h4>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3 text-center">
+                        <label for="fecha" class="form-label">Seleccioná una fecha</label>
+                        <input type="date" id="fecha" class="form-control text-center" />
+                    </div>
+                    <div class="d-grid">
+                        <button onclick="verHorariosS()" class="btn btn-success btn-lg">
+                            Ver horarios disponibles
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalHorarios" tabindex="-1" aria-labelledby="modalHorariosLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalHorariosLabel">Horarios disponibles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body" id="horarios">
+                <!-- Aquí se cargan los horarios -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!-- Modal del Formulario Bootstrap -->
+<div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormularioLabel">Agendar Turno</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Buscador de paciente -->
+                <div class="mb-3 position-relative">
+                    <label class="form-label">ingresa el nombre, apellido o dni del paciente</label>
+                    <input type="text" id="busquedaPaciente" class="form-control" placeholder="Buscar paciente..." oninput="buscarPacientesSS()" autocomplete="off" />
+                    <div id="resultadosBusqueda" class="list-group position-absolute w-100" style="z-index: 1050; max-height: 200px; overflow-y: auto;"></div>
+                </div>
+
+                <!-- Formulario -->
+                <form onsubmit="agendarR(event)">
+                    <input type="hidden" id="horaSeleccionada" />
+                    <input type="hidden" id="id_paciente" />
+                    <div class="mb-2">
+                        <label class="form-label">Nombre completo</label>
+                        <input type="text" id="nombres" class="form-control mb-2" placeholder="Nombres" readonly required />
+                        <label class="form-label">Apellido</label>
+                        <input type="text" id="apellido" class="form-control mb-2" placeholder="Apellido" readonly required />
+                        <label class="form-label">Documento</label>
+                        <input type="text" id="documento" class="form-control mb-2" placeholder="Documento" readonly required />
+                        <label class="form-label">Telefono del responsable</label>
+                        <input type="text" id="telefono" class="form-control mb-3" placeholder="Teléfono" readonly required />
+                        <label class="form-label">Ubicacion</label>
+                        <input type="text" id="ubicacion" class="form-control mb-3" placeholder="Ubicacion" readonly required />
+                    </div>
+                    <div class="modal-footer px-0">
+                        <button type="submit" class="btn btn-primary w-100">Agendar</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal del Formulario -->
+<div class="modal fade" id="modalFormulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFormularioLabel">Agendar Turno</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="agendar(event)">
+                    <input type="hidden" id="horaSeleccionada" />
+                    <div class="mb-3">
+                        <input type="text" id="nombres" class="form-control" placeholder="Nombres" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="apellido" class="form-control" placeholder="Apellido" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="documento" class="form-control" placeholder="Documento" required />
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="telefono" class="form-control" placeholder="Teléfono" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Agendar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Turnos.js"></script>

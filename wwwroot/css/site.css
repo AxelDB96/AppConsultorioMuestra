@@ -1,0 +1,67 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.toast {
+    visibility: hidden;
+    min-width: 300px;
+    background-color: #d4edda; /* verde suave */
+    color: #155724; /* verde oscuro */
+    text-align: center;
+    border-radius: 10px;
+    padding: 16px;
+    position: fixed;
+    left: 50%;
+    bottom: -100px; /* empieza fuera de pantalla */
+    transform: translateX(-50%);
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: bottom 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.toast.show {
+    visibility: visible;
+    bottom: 30px; /* sube */
+    opacity: 1;
+}
+
+
+/* Fondo de la card */
+.bg-login-image {
+    background: url('../img/juegoDeMemoria.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 0.35rem; /* igual que el card */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* manda contenido a la derecha */
+    align-items: center; /* centra verticalmente */
+    padding: 2rem; /* espacio del borde */
+}
+
+.bg-translucent {
+    background: rgba(255, 255, 255, 0.50); /* blanco translúcido */
+    backdrop-filter: blur(8px); /* desenfoque del fondo */
+    -webkit-backdrop-filter: blur(8px); /* compatibilidad Safari */
+}
